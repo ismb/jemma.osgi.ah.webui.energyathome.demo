@@ -37,6 +37,20 @@
 	</properties>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>OSGI-INF/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>./src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
