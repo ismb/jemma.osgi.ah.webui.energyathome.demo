@@ -37,6 +37,20 @@
 	</properties>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>OSGI-INF/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>./src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -112,11 +126,17 @@
 			<version>${org.energy-home.jemma.osgi.ah.webui.base.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.1.0</version>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.compendium</artifactId>
-			<version>4.2.0</version>
+			<version>4.1.0</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
