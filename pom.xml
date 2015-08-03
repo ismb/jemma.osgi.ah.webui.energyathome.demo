@@ -29,9 +29,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Internal dependencies version properties -->
-		<org.energy-home.jemma.osgi.ah.adapter.http.version>2.0.4</org.energy-home.jemma.osgi.ah.adapter.http.version>
-		<org.energy-home.jemma.osgi.ah.hac.lib.version>3.1.5</org.energy-home.jemma.osgi.ah.hac.lib.version>
-		<org.energy-home.jemma.osgi.ah.webui.base.version>2.0.13</org.energy-home.jemma.osgi.ah.webui.base.version>
+		<org.energy-home.jemma.osgi.ah.adapter.http.version>2.0.5</org.energy-home.jemma.osgi.ah.adapter.http.version>
+		<org.energy-home.jemma.osgi.ah.hac.lib.version>3.1.6</org.energy-home.jemma.osgi.ah.hac.lib.version>
+		<org.energy-home.jemma.osgi.ah.webui.base.version>2.0.14</org.energy-home.jemma.osgi.ah.webui.base.version>
 	
 		<!-- External dependencies version properties -->
 		<javax.servlet2.version>2.5.0</javax.servlet2.version>
