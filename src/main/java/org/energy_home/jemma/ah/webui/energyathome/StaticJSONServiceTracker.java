@@ -58,8 +58,7 @@ public class StaticJSONServiceTracker extends ServiceTracker {
 		} else {
 			// exports only the specified interface
 			try {
-				JSONRPCBridge.getGlobalBridge().registerObject(serviceId + "", service,
-						service.getClass().getClassLoader().loadClass(itf));
+				JSONRPCBridge.getGlobalBridge().registerObject(serviceId + "", service, service.getClass().getClassLoader().loadClass(itf));
 			} catch (Exception e) {
 
 			}

@@ -55,44 +55,44 @@ import org.slf4j.LoggerFactory;
 
 public class EnergyAtHome extends WebApplication implements HttpImplementor, HttpContext {
 
-    private static class ServletConfigDisableGZIPWrapper implements ServletConfig{
+	private static class ServletConfigDisableGZIPWrapper implements ServletConfig {
 
-        private ServletConfig wrapped=null;
-		
-		public ServletConfigDisableGZIPWrapper(ServletConfig wrapped){
-			this.wrapped=wrapped;
+		private ServletConfig wrapped = null;
+
+		public ServletConfigDisableGZIPWrapper(ServletConfig wrapped) {
+			this.wrapped = wrapped;
 		}
 
-		public String getInitParameter(String name){
+		public String getInitParameter(String name) {
 			// Disables gzip compression
-			if(name.equals("gzip_threshold")){
+			if (name.equals("gzip_threshold")) {
 				return "-1";
-			}else{
+			} else {
 				return wrapped.getInitParameter(name);
 			}
-		} 
-		
-		public Enumeration getInitParameterNames(){
+		}
+
+		public Enumeration getInitParameterNames() {
 			return wrapped.getInitParameterNames();
 		}
 
-		public ServletContext getServletContext(){
+		public ServletContext getServletContext() {
 			return wrapped.getServletContext();
 		}
 
-		public String getServletName(){
+		public String getServletName() {
 			return wrapped.getServletName();
-		} 
+		}
 	}
- 
+
 	private UserAdmin userAdmin = null;
 	private String applicationWebAlias = "/demo";
-	//private String applicationWebAlias = "/energyathome";
-	
+	// private String applicationWebAlias = "/energyathome";
+
 	private String realm = "Energy@Home Login";
 	private ComponentContext ctxt;
 
-	private static final Logger LOG = LoggerFactory.getLogger( EnergyAtHome.class );
+	private static final Logger LOG = LoggerFactory.getLogger(EnergyAtHome.class);
 	private static final String PROP_ENABLE_AUTH = "it.telecomitalia.ah.energyathome.auth";
 	private static final String PROP_ENABLE_HTTPS = "it.telecomitalia.ah.energyathome.https";
 	private static final boolean DEFAULT_ENABLE_AUTH = true;
@@ -106,7 +106,7 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 	private boolean enableSecurity = true;
 	private boolean enableHttps = false;
 	private ServiceRegistryProxy registryProxy;
-	
+
 	public Properties props = null;
 
 	protected void activate(ComponentContext ctxt) {
@@ -115,12 +115,12 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 		this.bc = ctxt.getBundleContext();
 
 		jsonRpcBridge = JSONRPCBridge.getGlobalBridge();
-		
+
 		try {
 			registryProxy = new ServiceRegistryProxy(this.bc, jsonRpcBridge);
 			jsonRpcBridge.registerObject("OSGi", registryProxy);
 		} catch (Throwable e) {
-			LOG.error("Exception on activate",e);
+			LOG.error("Exception on activate", e);
 		}
 	}
 
@@ -145,11 +145,11 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 		this.registerResource("/gh", "webapp/gh");
 		this.registerResource("/post-json", customJsonServlet);
 		this.registerResource("/json-rpc", jsonRPC);
- 		this.registerResource("/JSON-RPC", new JSONRPCServlet(){
-			public void init(ServletConfig config) throws ServletException{
+		this.registerResource("/JSON-RPC", new JSONRPCServlet() {
+			public void init(ServletConfig config) throws ServletException {
 				super.init(new ServletConfigDisableGZIPWrapper(config));
 			}
-		}); 
+		});
 
 		this.setHttpContext(this);
 
@@ -217,16 +217,15 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 			}
 			return false;
 		}
-		
+
 		String queryString = request.getRequestURI();
-		
+
 		if (queryString.equals(applicationWebAlias + "/conf") || (queryString.equals(applicationWebAlias + "/conf/"))) {
 			response.sendRedirect(applicationWebAlias + "/conf/index_embedded.html");
 			return true;
-		}
-		else if (queryString.equals(applicationWebAlias) || (queryString.equals(applicationWebAlias + "/"))) {
+		} else if (queryString.equals(applicationWebAlias) || (queryString.equals(applicationWebAlias + "/"))) {
 			response.sendRedirect(applicationWebAlias + "/index.html");
-			return true;			
+			return true;
 		}
 
 		if (enableSecurity) {
@@ -287,7 +286,8 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 						if (queryString.equals(applicationWebAlias + "/conf/login.html")) {
 							return true;
 						} else {
-//							session.putValue("login.target", HttpUtils.getRequestURL(request).toString());
+							// session.putValue("login.target",
+							// HttpUtils.getRequestURL(request).toString());
 							session.putValue("login.target", applicationWebAlias + "/conf/index_embedded.html");
 							Object done = session.getValue("logon.isDone");
 							if (done == null) {
@@ -309,11 +309,12 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 			response.setHeader("Cache-Control", "public, max-age=10000");
 		}
 
-		/*if (request.getRequestURI().endsWith(".js")) {
-			response.setHeader("Pragma", "no-cache");
-			response.setHeader("Cache-Control", "no-store");
-			response.setHeader("Cache-Control", "public, max-age=0");
-		}*/
+		/*
+		 * if (request.getRequestURI().endsWith(".js")) {
+		 * response.setHeader("Pragma", "no-cache");
+		 * response.setHeader("Cache-Control", "no-store");
+		 * response.setHeader("Cache-Control", "public, max-age=0"); }
+		 */
 
 		// response.addHeader(HttpServletResponse, arg1)
 
@@ -321,10 +322,12 @@ public class EnergyAtHome extends WebApplication implements HttpImplementor, Htt
 	}
 
 	private boolean redirectToLoginPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		/*String redirect = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-				+ applicationWebAlias + "/conf/login.html";
-		*/
-		String redirect=applicationWebAlias+"/conf/login.html";
+		/*
+		 * String redirect = request.getScheme() + "://" +
+		 * request.getServerName() + ":" + request.getServerPort() +
+		 * applicationWebAlias + "/conf/login.html";
+		 */
+		String redirect = applicationWebAlias + "/conf/login.html";
 		response.sendRedirect(redirect);
 		return true;
 	}

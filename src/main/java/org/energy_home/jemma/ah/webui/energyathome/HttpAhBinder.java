@@ -41,20 +41,19 @@ import org.slf4j.LoggerFactory;
 public class HttpAhBinder implements EventHandler, HttpServletBinder {
 
 	private static final long serialVersionUID = 1L;
-	
-	private static final Logger LOG = LoggerFactory.getLogger( HttpAhBinder.class );
-	
+
+	private static final Logger LOG = LoggerFactory.getLogger(HttpAhBinder.class);
+
 	private HttpImplementor implementor = null;
-	
+
 	public HttpAhBinder() {
 	}
-	
+
 	public void bind(HttpImplementor implementor) {
 		this.implementor = implementor;
 	}
-	
-	public Object invokeMethod(Object targetObject, String methodName, ArrayList paramValues) throws IllegalArgumentException,
-			IllegalAccessException, InvocationTargetException {
+
+	public Object invokeMethod(Object targetObject, String methodName, ArrayList paramValues) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		int params = paramValues.size();
 
 		Method[] methods = targetObject.getClass().getMethods();
@@ -154,7 +153,7 @@ public class HttpAhBinder implements EventHandler, HttpServletBinder {
 	public Object getObjectByPid(String pid) {
 		if (this.implementor != null)
 			return implementor.getObjectByPid(pid);
-		
+
 		return null;
 	}
 
@@ -240,8 +239,7 @@ public class HttpAhBinder implements EventHandler, HttpServletBinder {
 		} else if (o instanceof ILocation) {
 			ILocation location = (ILocation) o;
 			// log.debug("traduco " + location.getName());
-			out = "{ " + "\"name\": \"" + _(location.getName()) + "\", " + "\"icon\": \"" + location.getIconName() + "\", "
-					+ "\"pid\": \"" + location.getPid() + "\"" + "}";
+			out = "{ " + "\"name\": \"" + _(location.getName()) + "\", " + "\"icon\": \"" + location.getIconName() + "\", " + "\"pid\": \"" + location.getPid() + "\"" + "}";
 		} else if (o instanceof IAppliance) {
 			out += "\"" + ((IAppliance) o).getPid() + "\"";
 		} else if (o instanceof IServiceCluster) {
