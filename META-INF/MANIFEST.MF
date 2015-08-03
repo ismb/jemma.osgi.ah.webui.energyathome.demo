@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1438019231853
-Build-Jdk: 1.7.0_45
-Built-By: bluewind
+Bnd-LastModified: 1438598128013
+Build-Jdk: 1.8.0_45
+Built-By: tomasi
 Bundle-Category: Automation@Home
 Bundle-ManifestVersion: 2
 Bundle-Name: Energy@Home Web Application Demo
@@ -16,7 +16,7 @@ Import-Package: org.energy_home.jemma.ah.hac;version="[3.0,4)",javax.ser
  ;version="1.3.1",org.json,org.osgi.framework;version="1.3.0",org.osgi.s
  ervice.component;version="[1.1,2)",org.osgi.service.event;version="[1.2
  ,2)",org.osgi.service.http;version="[1.2,2)",org.osgi.service.useradmin
- ;version="1.1.0",org.osgi.util.tracker;version="[1.4,2)",org.slf4j;vers
+ ;version="1.1.0",org.osgi.util.tracker;version="[1.5,2)",org.slf4j;vers
  ion="[1.6,2)",org.energy_home.jemma.hac.adapter.http;version="[2.0,3)",
  javax.security.auth.login,org.apache.commons.logging;version="[1.0,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
